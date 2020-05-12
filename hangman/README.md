@@ -169,3 +169,34 @@ function drawHangman(wrongGuesses) {
 }
 
 ```
+
+Whenever the `wrongGuesses` value changes we need to call this `drawHangman` logic. 
+Now we need to add the other lines needed for our hangman according to this graphic:
+
+![Hangman logic](hangman-svg.png)
+
+```javascript
+function drawHangman(wrongGuesses) {
+  if (wrongGuesses === 1) {
+    svg.line(50, 450, 150, 450);
+  } else if (wrongGuesses === 2) {
+    svg.line(100, 450, 100, 100);
+  } else if (wrongGuesses === 3) {
+    svg.line(100, 100, 300, 100);
+  } else if (wrongGuesses === 4) {
+    svg.line(300, 100, 300, 150);
+  } else if (wrongGuesses === 5) {
+    svg.circle(300, 175, 25);
+  } else if (wrongGuesses === 6) {
+    svg.line(300, 200, 300, 300);
+  } else if (wrongGuesses === 7) {
+    svg.line(300, 250, 250, 210);
+  } else if (wrongGuesses === 8) {
+    svg.line(300, 250, 350, 210);
+  } else if (wrongGuesses === 9) {
+    svg.line(300, 300, 250, 350);
+  } else if (wrongGuesses === 10) {
+    svg.line(300, 300, 350, 350);
+  }
+}
+```
