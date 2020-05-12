@@ -1,0 +1,14 @@
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  }
+
+  line,
+  circle,
+  ellipse,
+  rect,
+  text,
+  path {
+    stroke: black;
+    fill: none;
+  }
+  
