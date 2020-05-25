@@ -1,5 +1,7 @@
 # Hangman 
 
+Credits for the first implementation go to the ❤️ [CoderDojo Linz](https://coderdojo-linz.github.io/trainingsanleitungen/web/hangman.html) ❤️
+
 ## Setup and connect all the files
 
 We create a very simple HTML file `index.html`, a CSS file `styles.css` and a JavaScript file `main.js`. The `index.html` is the entrypoint of any website. 
