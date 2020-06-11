@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title>To-Do List</title>
+		<meta charset="UTF-8" />
+		<link rel="stylesheet" href="{{ url_for('static', filename= 'style.css') }}">
+	</head>
+
+	<body>
+		<div id="todoList">
+				<div id="myDIV" class="header">
+					<h1>{% if user %}{{user}}'s{% endif %} To-Do List</h1>
+                    <form method="post">
+                        <div class='divAddItem'>
+                            <input type="text" class="hidden" name="user" value="{{ user }}">
+                            <input type="text" id="todoItemInput" name='title' placeholder="Title..." 
+                                value="{{ request.form['title'] }}" required>
+                            <button type="submit" class='addBtn'>Add item</button>
+                        </div>
+                    </form> 
+				</div>
+					
+				<ul id="todoItems">
+                    <!-- DYNAMIC -->
+                    {% for index, item in items.iterrows() %}
+                        <li>
+                            <div class='divToDoItems'>
+                                <p>{{item['title']}}</p>
+                                <form method="post" action="{{ url_for('delete', id=item['id']) }}">
+                                    <input type="text" class="hidden" name="user" value="{{ user }}">
+                                    <input class='close' type="submit" value="x">
+                                </form>
+                            </div>
+                        </li>
+                    {% endfor %}
+				</ul>
+		</div>
+	</body>
+</html>
