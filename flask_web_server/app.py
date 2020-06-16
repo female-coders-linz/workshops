@@ -35,23 +35,24 @@ def delete_list_item(item_id):
 
     save_items(items=items)
 
-@app.route('/', methods=['GET', 'POST'])
-def index():
-    if request.method == 'POST':
-        add_list_item(request.form)
-        return redirect(url_for('.index'))
 
+@app.route('/', methods=['GET'])
+def index():
     list_items = get_list_items()
     return render_template('index.html', items=list_items)
 
-@app.route('/list/<name>', methods=['GET', 'POST'])
+
+@app.route('/', methods=['POST'])
+def add_index():    
+    add_list_item(request.form)
+    return redirect(url_for('.index'))
+
+
+@app.route('/list/<name>', methods=['GET'])
 def to_do_list(name):
-    if request.method == 'POST':
-        add_list_item(request.form)
-        return redirect(request.url)
-    
     list_items = get_list_items()
-    return render_template('index.html', items=list_items, user=name)
+    return render_template('custom.html', items=list_items, user=name)
+
 
 @app.route('/<int:id>/delete', methods=['POST'])
 def delete(id):

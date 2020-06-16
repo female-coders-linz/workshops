@@ -79,7 +79,7 @@ import `render_template` function from flask and render the index.html file in:
 from flask import Flask, render_template
 
 ...
-@app.route('/')
+@app.route('/', method=['GET'])
 def index():
     return render_template('index.html')
 ```
@@ -104,18 +104,36 @@ So far, the content on the website is static, usually you want to make it more i
 
 As a first step, we want to make it "your own" To-Do list and show a custom name.
 
+```html
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title>Page</title>
+		<meta charset="UTF-8" />
+		<link rel="stylesheet" href="{{ url_for('static', filename= 'style.css') }}">
+	</head>
+
+	<body>
+        <h1>Page<h1>
+	</body>
+</html>
+```
+
 In your app.py file change your `to_do_list` function to also accept a parameter called `name`:
 ```python
-@app.route('/list/<name>')
+@app.route('/list/<name>', method=['GET'])
 def to_do_list(name):
-    return render_template('index.html', user=name)
+    return render_template('custom.html', user=name)
 ```
-Through `<name>` in the app route it accepts a parameter called `name` (must be available, so `/list` does not work anymore). This dynamic value you cann now pass to your `index.html` file, where you can use it using `{{user}}`, e.g. you could now change you `index.html` file like to display the name with `<h1>{{user}}'s To-Do List</h1>`.
+Through `<name>` in the app route it accepts a parameter called `name` (must be available, so `/list` does not work anymore). This dynamic value you cann now pass to your `custom.html` file, where you can use it using `{{user}}`, e.g. you could now change you `custom.html` file like to display the name with `<h1>{{user}}'s To-Do List</h1>`.
 
-As we use the `index.html` file also for the landing page, where you can enter without a user name (general To-Do list) we don't want to display an `'s`. For this we can add an if-statement in the html:
+As we use the `custom.html` file also for the landing page, where you can enter without a user name (general To-Do list) we don't want to display an `'s`. For this we can add an if-statement in the html:
 
 ```html
-<h1>{% if user %}{{user}}'s{% endif %} To-Do List</h1>
+<title>{{user}} Page</title>
+...
+<h1>{% if user %}{{user}}'s{% endif %} Page</h1>
 ```
 
 ### Persist your list
@@ -163,7 +181,7 @@ So far we show a html file, but except for the user the content is still static.
   6. Now we also want to be able to dynamically add items to the list through our input field. There is already a form provided, which uses the text which is inputted and tries to send through a POST-quest (`<form method="post">`) to the endpoint where the HTML file is shown (so in our case either localhost:5000 or localhost:5000/list/<name>).
   We have only enabled GET-requests so far. In order to allow the user to add items, we have to also handle POST-requests and read the content of the request. In your `app.py` enable POST requests to the sites, where you want the user to add To-Do list items, e.g.:
   ```python
-  @app.route('/', methods=['GET', 'POST'])
+  @app.route('/', methods=['POST'])
   ```
   7. Now you allow POST-requests to this endpoint. Now you have to deal with POST requests accordingly - in our case we want to add the new item.
   ```python
@@ -187,11 +205,10 @@ So far we show a html file, but except for the user the content is still static.
 
     save_items(items)
 
-  @app.route('/', methods=['GET', 'POST'])
+  @app.route('/', methods=['POST'])
   def index():
-    if request.method == 'POST':
-          add_list_item(request.form)
-          return redirect(url_for('.index'))
+    add_list_item(request.form)
+    return redirect(url_for('.index'))
     ...
 
   ```

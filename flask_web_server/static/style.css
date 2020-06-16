@@ -8,6 +8,11 @@ body {
     height: 100%;
   }
   
+  h1 {
+    color: white;
+    background-color: black;
+  }
+
   /* Include the padding and border in an element's total width and height */
   * {
     box-sizing: border-box;
