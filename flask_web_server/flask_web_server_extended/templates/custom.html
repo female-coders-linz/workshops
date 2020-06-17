@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title>To-Do List {{user}}</title>
+		<meta charset="UTF-8" />
+		<link rel="stylesheet" href="{{ url_for('static', filename= 'style.css') }}">
+	</head>
+
+	<body>
+        <h1>{% if user %}{{user}}'s{% endif %} Page</h1>
+	</body>
+</html>

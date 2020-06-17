@@ -89,8 +89,7 @@ If you now go to `localhost:5000` your index.html file should be shown. You see 
 
 ### Make it fancy using CSS
 
-# TODO change reference for css to flask server project
-Create a new folder `static`, inside this folder create a `style.css` file with the content available in styles.css on [GitHub](https://github.com/female-coders-linz/workshops/tree/master/flask_web_server/static/styles.css). Also download the `background.jpg` from the [static folder](https://github.com/female-coders-linz/workshops/tree/master/flask_web_server/static) and store it in the `static` folder. 
+Create a new folder `static`, inside this folder create a `style.css` file with the content available in styles.css on [GitHub](https://github.com/female-coders-linz/workshops/tree/master/flask_web_server/flask_web_server_extended/static/styles.css). Also download the `background.jpg` from the [static folder](https://github.com/female-coders-linz/workshops/tree/master/flask_web_server/static) and store it in the `static` folder. 
 
 You can now link the CSS file in your index html using `url_for` in your link reference:
 ```html
