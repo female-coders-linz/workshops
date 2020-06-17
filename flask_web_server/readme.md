@@ -2,6 +2,7 @@
 
 ## Prerequisites
   * [Python 3](https://www.python.org/downloads/)
+  * [Pip](https://pip.pypa.io/en/stable/installing/)
   * IDE of your choice (e.g. [Visual Studio Code](https://code.visualstudio.com/Download), incl. python extension)
 
 ## Steps to execute
