@@ -36,6 +36,8 @@ def to_do_list():
 
 Now, run your program. Then in a browser open `localhost:5000/list`.
 
+Also try out a request to localhost:5000/list using Postman - keep on doing that througout the tutorial.
+
 ### Use a HTML file
 Create a new folder `templates`.
 Add a new `index.html` file in there:
@@ -50,25 +52,23 @@ Add a new `index.html` file in there:
 
 	<body>
 		<div id="todoList">
-				<div id="myDIV" class="header">
-					<h1>To-Do List</h1>
-                    <form method="post">
-                        <div class='divAddItem'>
-                            <input type="text" class="hidden" name="user" value="{{ user }}">
-                            <input type="text" id="todoItemInput" name='title' placeholder="Title..." 
-                                value="" required>
-                            <button type="submit" class='addBtn'>Add item</button>
-                        </div>
-                    </form> 
-				</div>
-					
-				<ul id="todoItems">
-                    <li>
-                        <div class='divToDoItems'>
-                            <p>Hit the gym</p>
-                            <input class='close' type="submit" value="x">
-                    </li>
-				</ul>
+			<div id="myDIV" class="header">
+				<h1>To-Do List</h1>
+     
+			</div>
+				
+			<ul id="todoItems">
+	            <li>
+	                <div class='divToDoItems'>
+	                    <p>Hit the gym</p>
+	                </div>
+	            </li>
+	            <li>
+	                <div class='divToDoItems'>
+	                    <p>Go to female coders study group</p>
+	                </div>
+	            </li>
+			</ul>
 		</div>
 	</body>
 </html>
@@ -174,7 +174,6 @@ So far we show a html file, but except for the user the content is still static.
   <li>
       <div class='divToDoItems'>
           <p>{{item['title']}}</p>
-          <input class='close' type="submit" value="x">
   </li>
   {% endfor %}
   ```
@@ -212,6 +211,18 @@ So far we show a html file, but except for the user the content is still static.
     ...
 
   ```
+
+  To send this POST-request, add a form in the `index.html` in the div `myDIV`
+  ```html
+  <form method="post">
+      <div class='divAddItem'>
+          <input type="text" id="todoItemInput" name='title' placeholder="Title..." 
+              value="" required>
+          <button type="submit" class='addBtn'>Add item</button>
+      </div>
+  </form> 
+```
+   You can also try it out in Postman.
 
   8. We can now add new items. Let's let us delete items which we finished now. In your `app.py` add a function to delete an item by id:
   ```python
