@@ -75,11 +75,13 @@ When we refresh our page now, we will see that our cells actually fall out of ou
 
 Now we should end up with a grid that resembles this structure: 
 
+```
 00 01 02 03 04 05 06 07 08 09
 10 11 12 13 14 15 16 17 18 19
 20 21 22 23 24 25 26 27 28 29
 ...
 190 191 192 193 194 195 196 197 198 199
+```
 
 ## Display a random Tetromino on the top. 
 
@@ -87,6 +89,7 @@ There are five different tetrominos and in order to choose randomly from them we
 
 An lTetromino(L) can have the following displays: 
 
+```
   0 1 2 3
 0   # #
 1   # 
@@ -110,6 +113,7 @@ An lTetromino(L) can have the following displays:
 1 #
 2 # # #
 3   
+```
 
 which corresponds to 
 
