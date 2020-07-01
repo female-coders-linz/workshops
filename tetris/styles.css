@@ -1,0 +1,17 @@
+.grid {
+    height: 400px; 
+    width: 200px;
+    background: lightblue;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.cell {
+    border: solid lightgray 1px;
+    height: 18px;
+    width: 18px;
+}
+
+.falling-tetromino {
+    background: hotpink;
+}
