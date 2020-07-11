@@ -102,6 +102,10 @@ document.addEventListener('DOMContentLoaded', () => {
         currentTetromino = allTetrominos[currentTetrominoIdx][currentRotationIdx];
         currentPosition = 4;
         draw();
+        if (wouldTouchFrozenTetromino(currentPosition)) {
+            alert('Game Over!');
+            clearInterval(timerId);
+        }
     }
 
     function touchingBottom() {

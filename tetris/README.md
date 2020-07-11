@@ -1,6 +1,10 @@
 # Tetris 
 
+<<<<<<< HEAD
 In this session we will impelment a version of the TETRIS game based on a video by the amazin Ania Kubów. Check out her youtube channel [ --> here <-- ](https://www.youtube.com/channel/UC5DNytAJ6_FISueUfzZCVsw). 
+=======
+In this session we will impelment a version of the TETRIS game based on a video by the amazing Ania Kubów. Check out her youtube channel -> here <-. 
+>>>>>>> Update Tetris readme
 
 ## Project setup and file linking 
 
@@ -74,7 +78,10 @@ When we refresh our page now, we will see that our cells actually fall out of ou
 ```
 
 Now we should end up with a grid that resembles this structure: 
+<<<<<<< HEAD
 
+=======
+>>>>>>> Update Tetris readme
 ```
 00 01 02 03 04 05 06 07 08 09
 10 11 12 13 14 15 16 17 18 19
@@ -126,7 +133,7 @@ const lTetromino = [
 ];
 ```
 
-We'll do the exact same thing for all five of our tetrominos and put the five tetrominos in one array to choose randomly from
+We'll do the exact same thing for all five of our tetrominos and put the five tetrominos in one array to choose randomly from.
 
 ```javascript
 const width = 10;
@@ -175,12 +182,12 @@ Next we will write a function to display our tetromino on the grid, we will do t
 }
 ```
 
-Now we need to implement a draw and undraw function for our tetromino - the function will receive a tetromino, which is an array of numbers that tells us which cells to color repectively to our current position and a current position.
+Now we need to implement a draw and undraw function for our tetromino - the function will draw a tetromino, which is an array of numbers that tells us which cells to color repectively to our current position at a specific position. `currentTetromino` and `currentPosition` are global variables, we will need to modify and read them across functions. 
 
 ```javascript
-const allTetrominos = [lTetromino, zTetromino, tTetromino, iTetromino, oTetromino];
-
 let cells = Array.from(document.querySelectorAll('.grid div'))
+let currentTetromino = allTetrominos[0][0];
+let currentPosition = 4;
 
 function draw() {
     currentTetromino.forEach(drawingOffset => {
@@ -196,8 +203,9 @@ function undraw() {
 
 ```
 
-In order to test it we will just use a `draw();` at the end of our code and set `currentTetromino` to  `allTetrominos[2][1]` and currentPosition to `4` which is the center of the top row of our grid. Now if we reload the page - we might see no tetrominio displayed and see an error in our console instead. 
-That's because we try to load all cells with `document.querySelectorAll('.grid div')` before the HTML is built actually and then this selector returns nothing. 
+In order to test it we will just use a `draw();` at the end of our code and set `currentTetromino` to  `allTetrominos[0][0]` and currentPosition to `4` which is the center of the top row of our grid. Now if we reload the page - we might see no tetrominio displayed and see an error in our console instead. 
+
+⚠️ That's because we try to load all cells with `document.querySelectorAll('.grid div')` before the HTML is built actually and then this selector returns nothing. 
 In order to fix that we will wrap our code in a event listener that listens on the document ready - this event will be fired once the full HTML has been rendered initially. 
 
 ```javascript
@@ -247,7 +255,7 @@ function touchingRightEdge() {
 
 function moveRight() {
     if (!touchingRightEdge()) {
-        // u draw, modify currentPosition, draw
+        // undraw, modify currentPosition, draw
     }
 }
 
@@ -257,10 +265,12 @@ function touchingLeftEdge() {
 
 function moveLeft() {
     if (!touchingLeftEdge()) {
-        // u draw, modify currentPosition, draw
+        // undraw, modify currentPosition, draw
     }
 }
 ```
+
+💡 `some` is a function on an array or list that evaluates a given condition for every element in the array or list. If the condition resolves to true for any (or some ;)) of the elements it will return `true`.
 
 ## Implement rotating with the arrow up key 
 
@@ -303,9 +313,9 @@ document.addEventListener('keydown', function keyDownListener(e) {
 });
 ```
 
-Now we have the same problem as we had before when we implemented the left and right movement. When we are at the bottom of our field we get an arrow. What should actually happen is, the block should freeze there and stay there. 
+Now we have the same problem as we had before when we implemented the left and right movement. When we are at the bottom of our field we get an error. What should actually happen is that the block freezes and stays at the bottom. 
 
-We reach the last row if any of our absolute positions from our current tetromino is greater than 190. When we reach it we will mark our current tetromino cells as "frozen-tetromino" for later usage and start a new tetromino at the top of our grid.
+We reach the last row if any of our absolute positions from our current tetromino is greater than 190. When we reach it we will mark our current tetromino cells as `frozen-tetromino` for later usage and start a new tetromino at the top of our grid.
 
 ```javascript
 function moveDown() {
@@ -333,7 +343,7 @@ Perfect! Now tetrominos get stuck at the bottom and new ones appear at the top. 
 
 ## Freezing tetrominos when they touch another tetromino
 
-This is where our `frozen-tetromino` class comes into play. We will add a function to check if any cell of our currentTetromino would touch an existing frozen tetromino at it's new index. 
+This is where our `frozen-tetromino` class comes into play. We will add a function to check if any cell of our current tetrominos would touch an existing frozen tetromino at its new index. 
 
 ```javascript
 function wouldTouchFrozenTetromino(potentialPosition) {
@@ -386,28 +396,18 @@ document.querySelector('.start-button').addEventListener('click', () => {
 });
 ```
 
-With setInterval we can create a recurring event that will happen with an interval of the given number inbetween any two calls. It returns us its unique ID and we will keep it so that we can stop this recurring action in the game over logic. 
+💡 With setInterval we can create a recurring event that will happen with an interval of the given number inbetween any two calls. It returns us its unique ID and we will keep it so that we can stop this recurring action in the game over logic. 
 
 ## Full rows vanish and add to the score
 
 Great now we can already play the game and it behaves a lot like the original game, but full rows don't vanish yet. 
-
-Whenever all cells in one row have the `frozen-tetromino` class we need to cut out that row, reset its classes and add it to the front of the array again (top of the grid). Moreover we will increase our score and display the changed score. 
+Whenever all cells in one row have the `frozen-tetromino` class we need to cut out that row, and add it on top of the array again (top of the grid).
 
 ```javascript
 function recalculateScore() {
     for (currentIndex = 0; currentIndex < 200; currentIndex += width) {
         const row = [currentIndex, currentIndex + 1, currentIndex + 2, currentIndex + 3, currentIndex + 4, currentIndex + 5, currentIndex + 6, currentIndex + 7, currentIndex + 8, currentIndex + 9]
         if (row.every(index => cells[index].classList.contains('frozen-tetromino'))) {
-            score += 10;
-            document.querySelector('.score').innerHTML = score;
-            row.forEach(
-                cellIndex => {                    
-                    cells[cellIndex].classList.remove('frozen-tetromino');
-                    cells[cellIndex].classList.remove('falling-tetromino');
-                }
-            )
-
             const cellsRemoved = cells.splice(currentIndex, width)
             cells = cellsRemoved.concat(cells)
             cells.forEach(cell => document.querySelector('.grid').appendChild(cell)           
@@ -415,6 +415,12 @@ function recalculateScore() {
     }
 }
 ```
+
+By increasing our `currentIndex` by `width` (`currentIndex += width`) in every iteration of our loop we go through our loop 20 times, as we have 20 rows. In each iteration we will save the indices of the current row in a `row` variable. The row always contains 10 values - [0, 1, 2 ... 8, 9] in the first row, [10, 11, 12 .. 18, 19] in the second row and so on until [190, 191, 192, .. 198, 199] in the last row.
+
+💡 `every` is a function on an array or list that evaluates a given condition for every element in the array or list, like `some`. In comparision to `some` it will only return `true` if the condition is true for each element in the list or array. If a single element results in the condition evaluating to `false` the result of the `every` call will be false.
+
+💡 `splice` is a method on an array that cuts out n elements on a specific index and returns a list of those elements. 
 
 We add a call to this function in our `moveDown()` function. 
 
@@ -425,4 +431,46 @@ function moveDown() {
 }
 ```
 
+Now when we are able to create a full row that row will vanish and the row will appear at the top of the grid again - with the frozen-tetromino class styling so still in pink, we need to remove this styling before we move the row to the top
+
+```javascript
+if (row.every(index => cells[index].classList.contains('frozen-tetromino'))) {
+    row.forEach(
+        cellIndex => {
+            cells[cellIndex].classList.remove('frozen-tetromino');
+            cells[cellIndex].classList.remove('falling-tetromino');
+        }
+    )
+
+    const cellsRemoved = cells.splice(currentIndex, width)
+    // add cells on top ...
+}
+```
+
+Now the moving of the cells to the top should work properly. One thing that's still left is adding to the score and displaying it. 
+We can easily do that by increasing the score by 10 whenever a row is full (because a row consists of 10 blocks) and updating our dedicated HTML element.
+
+```javascript
+if (row.every(index => cells[index].classList.contains('frozen-tetromino'))) {
+    score += 10;
+    document.querySelector('.score').innerHTML = score;
+    // splice array and move cells to top ...
+}
+```
+
+## Game Over 
+
+Whenever we start a new tetromino and on any of its positions there is already a tetromino, that means we have lost. 
+So we need to check if we are touching any frozen tetromino on our current position whenever we create a new random tetromino.
+When we have lost we will just show a pop up that tells us that we have lost and clear the interval to prevent the tetrominos from falling down further. 
+
+```javascript
+function setupRandomTetromino() {
+    // set up of tetrominos
+    if (wouldTouchFrozenTetromino(currentPosition)) {
+        alert('Game Over!');
+        clearInterval(timerId);
+    }
+}
+```
 
