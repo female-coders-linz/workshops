@@ -1,10 +1,6 @@
 # Tetris 
 
-<<<<<<< HEAD
 In this session we will impelment a version of the TETRIS game based on a video by the amazin Ania Kubów. Check out her youtube channel [ --> here <-- ](https://www.youtube.com/channel/UC5DNytAJ6_FISueUfzZCVsw). 
-=======
-In this session we will impelment a version of the TETRIS game based on a video by the amazing Ania Kubów. Check out her youtube channel -> here <-. 
->>>>>>> Update Tetris readme
 
 ## Project setup and file linking 
 
@@ -78,10 +74,6 @@ When we refresh our page now, we will see that our cells actually fall out of ou
 ```
 
 Now we should end up with a grid that resembles this structure: 
-<<<<<<< HEAD
-
-=======
->>>>>>> Update Tetris readme
 ```
 00 01 02 03 04 05 06 07 08 09
 10 11 12 13 14 15 16 17 18 19
