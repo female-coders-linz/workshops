@@ -1,0 +1,38 @@
+.grid {
+    height: 300px;
+    width: 300px;
+    background: black;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.cell {
+    border: 2px solid black;
+    height: 16px;
+    width: 16px;
+}
+
+.player {
+    background: url(assets/player_01.png) no-repeat center center;
+    background-size: contain;
+}
+
+.invader-1 {
+    background: url(assets/enemy_01.png) no-repeat center center;
+    background-size: contain;
+}
+
+.invader-2 {
+    background: url(assets/enemy_02.png) no-repeat center center;
+    background-size: contain;
+}
+
+.invader-3 {
+    background: url(assets/enemy_03.png) no-repeat center center;
+    background-size: contain;
+}
+
+.laser {
+    background: url(assets/lightning.svg) no-repeat center center;
+    background-size: contain;
+}
