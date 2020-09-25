@@ -1,0 +1,54 @@
+.dino {
+  width: 60px;
+  height: 60px;
+  background-image: url("assets/t-rex.png");
+  position: absolute;
+  bottom: 0px;
+}
+
+.cacti {
+    width: 60px;
+    height: 60px;
+    background-image: url("assets/cacti.png");
+    position: absolute;
+    bottom: 0px;
+}
+
+@keyframes slideright {
+    from {
+        background-position: 100%;
+    }
+    to {
+        background-position: 0%;
+    }
+  }
+  
+  .desert {
+    position: absolute;
+    bottom: 100px;
+    background-image: url('assets/t-rex-background.png');
+    background-repeat: repeat-x;
+    animation: slideright 3000ms infinite linear;
+    width: 100%;
+    height: 200px;
+  }
+
+  .gameOver {
+    position: absolute;
+    top: 50px;
+    left: 750px;
+    display: none;
+  }
+
+  @font-face {
+    font-family: pixelfont;
+    src: url('assets/Pixeboy-z8XGD.ttf');
+  }
+
+  .score {
+    font-family: pixelfont;
+    font-size: 25px;
+    position: absolute;
+    right: 30px;
+    top: 30px;
+  }
